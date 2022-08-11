@@ -1,7 +1,4 @@
 library core_module;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:core_module/src/errors/application_error.dart';
+export 'package:core_module/src/services/dio/dio_service_implementation.dart';

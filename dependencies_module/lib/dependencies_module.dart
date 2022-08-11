@@ -1,5 +1,6 @@
 library dependencies_module;
 
+export 'package:dartz/dartz.dart' hide Bind;
 export 'package:google_fonts/google_fonts.dart';
 export 'package:bloc/bloc.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
