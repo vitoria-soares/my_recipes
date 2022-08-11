@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "my_recipes_application"
+		},
+		{
+			"path": "dependencies_module"
+		},
+		{
+			"path": "core_module"
+		},
+		{
+			"path": "cookie_design_system"
+		}
+	],
+	"settings": {
+		"dart.flutterSdkPath": "/.fvm/flutter_sdk"
+	}
+}
