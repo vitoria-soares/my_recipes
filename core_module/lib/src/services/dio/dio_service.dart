@@ -2,13 +2,10 @@ import 'package:core_module/src/services/dio/service_information.dart';
 import 'package:core_module/src/services/errors/service_error.dart';
 import 'package:dependencies_module/dependencies_module.dart';
 
-import 'dio_service_abstraction.dart';
+import 'dio_service_interface.dart';
 
-class DioService implements DioServiceAbstraction {
-  final Dio dio;
-  DioService({
-    required this.dio,
-  });
+class DioService implements DioServiceInterface {
+  final dio = Dio();
 
   @override
   Future<ServiceInformation> get(String url) async {
