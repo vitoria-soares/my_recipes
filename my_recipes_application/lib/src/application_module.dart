@@ -1,5 +1,6 @@
 import 'package:dependencies_module/dependencies_module.dart';
-import 'package:my_recipes_application/src/modules/home/home_module.dart';
+
+import 'modules/home/presenter/pages/home_page.dart';
 
 class ApplicationModule extends Module {
   @override
@@ -9,5 +10,10 @@ class ApplicationModule extends Module {
   List<Bind<Object>> get binds => [];
 
   @override
-  List<ModularRoute> get routes => [ModuleRoute('/home', module: HomeModule())];
+  List<ModularRoute> get routes => [
+        ChildRoute(
+          '/',
+          child: (context, args) => const HomePage(),
+        ),
+      ];
 }
