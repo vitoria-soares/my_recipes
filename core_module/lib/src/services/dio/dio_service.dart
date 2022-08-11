@@ -5,10 +5,7 @@ import 'package:dependencies_module/dependencies_module.dart';
 import 'dio_service_interface.dart';
 
 class DioService implements DioServiceInterface {
-  final Dio dio;
-  DioService({
-    required this.dio,
-  });
+  final dio = Dio();
 
   @override
   Future<ServiceInformation> get(String url) async {

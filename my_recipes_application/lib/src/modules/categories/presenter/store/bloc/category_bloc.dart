@@ -19,8 +19,12 @@ class CategoryBloc extends Bloc<CategoryEventInterface, CategoryStateInterface> 
     emitter(CategoryLoadingState());
     var result = await usecase();
     result.fold(
-      (l) => emitter(CategoryErrorState(message: l.message)),
-      (r) => CategorySuccessState(categoryList: r),
+      (l) => emitter(
+        CategoryErrorState(message: l.message),
+      ),
+      (r) => emitter(
+        CategorySuccessState(categoryList: r),
+      ),
     );
   }
 }

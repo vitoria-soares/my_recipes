@@ -13,7 +13,7 @@ class GetCategoryDatasource implements GetCategoryDatasourceInterface {
   });
   @override
   Future<Either<ApplicationError, List<CategoryModel>>> call() async {
-    const String url = 'www.themealdb.com/api/json/v1/1/categories.php';
+    const String url = 'https://www.themealdb.com/api/json/v1/1/categories.php';
     ServiceInformation result = await dio.get(url);
     if (result.statusCode == 400) {
       throw DatasourceError(
