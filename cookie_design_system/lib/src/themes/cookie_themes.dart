@@ -8,8 +8,16 @@ abstract class CookieThemes {
     useMaterial3: true,
     brightness: Brightness.light,
     textTheme: TextTheme(
-      titleMedium: GoogleFonts.ptSans(
-        fontSize: 28,
+      titleLarge: GoogleFonts.lobster(
+        fontSize: 26,
+        fontWeight: FontWeight.w500,
+      ),
+      titleMedium: GoogleFonts.quicksand(
+        fontSize: 22,
+        fontWeight: FontWeight.w500,
+      ),
+      titleSmall: GoogleFonts.quicksand(
+        fontSize: 18,
         fontWeight: FontWeight.w500,
       ),
     ),

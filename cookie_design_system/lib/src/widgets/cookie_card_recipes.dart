@@ -1,12 +1,12 @@
 import 'package:cookie_design_system/cookie_design_system.dart';
 import 'package:flutter/material.dart';
 
-class CookieCard extends StatelessWidget {
+class CookieCardRecipes extends StatelessWidget {
   final Widget? leading;
   final Widget? title;
   final Widget? subtitle;
   final void Function()? onTap;
-  const CookieCard({
+  const CookieCardRecipes({
     Key? key,
     this.leading,
     this.title,

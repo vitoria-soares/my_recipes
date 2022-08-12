@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:my_recipes_application/src/modules/categories/domain/models/category_model.dart';
 import 'package:my_recipes_application/src/modules/categories/external/datasource/get_category_datasource_interface.dart';
 
-import '../error/datasource_error.dart';
+import '../../../error/datasource_error.dart';
 
 class GetCategoryDatasource implements GetCategoryDatasourceInterface {
   final DioServiceInterface dio;
