@@ -14,6 +14,9 @@ class ApplicationWidget extends StatelessWidget {
         systemNavigationBarColor: CookieColors.yellow,
       ),
     );
+    SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp],
+    );
     Modular.setObservers;
     Modular.setInitialRoute('/');
     return MaterialApp.router(
