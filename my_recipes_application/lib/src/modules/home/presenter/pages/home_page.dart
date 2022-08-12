@@ -56,16 +56,16 @@ class _HomePageState extends State<HomePage> {
                       if (state is CategoryInitState) {
                         return const SizedBox.shrink();
                       }
+                      if (state is CategoryErrorState) {
+                        return const Center(
+                          child: Text('Ops...An error has occurred!'),
+                        );
+                      }
                       if (state is CategoryLoadingState) {
                         return const Center(
                           child: CircularProgressIndicator(
                             color: CookieColors.orange,
                           ),
-                        );
-                      }
-                      if (state is CategoryErrorState) {
-                        return const Center(
-                          child: Text('Ops...An error has occurred!'),
                         );
                       }
                       state as CategorySuccessState;
