@@ -22,7 +22,7 @@ class ApplicationWidget extends StatelessWidget {
     return MaterialApp.router(
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
-      title: 'Minhas Receitas',
+      title: 'My recipes',
       debugShowCheckedModeBanner: false,
       theme: CookieThemes.theme,
     );
