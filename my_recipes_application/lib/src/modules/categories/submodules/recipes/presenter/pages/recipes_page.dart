@@ -64,6 +64,11 @@ class _RecipesPageState extends State<RecipesPage> {
                     if (state is RecipeInitState) {
                       return const SizedBox.shrink();
                     }
+                    if (state is RecipeErrorState) {
+                      return const Center(
+                        child: Text('Ops...An error has occurred!'),
+                      );
+                    }
                     if (state is RecipeLoadingState) {
                       return const Center(
                         child: CircularProgressIndicator(
@@ -71,15 +76,11 @@ class _RecipesPageState extends State<RecipesPage> {
                         ),
                       );
                     }
-                    if (state is RecipeErrorState) {
-                      return const Center(
-                        child: Text('Ops...An error has occurred!'),
-                      );
-                    }
                     state as RecipeSuccessState;
                     return ListView.builder(
                       itemCount: state.recipeList.length,
                       itemBuilder: (context, index) {
+                        final recipe = state.recipeList.elementAt(index);
                         return CookieCardRecipes(
                           onTap: () {
                             Modular.to.navigate(
@@ -88,11 +89,11 @@ class _RecipesPageState extends State<RecipesPage> {
                             );
                           },
                           title: Text(
-                            state.recipeList.elementAt(index).strMeal,
+                            recipe.strMeal,
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
                           leading: Image.network(
-                            state.recipeList.elementAt(index).strMealThumb,
+                            recipe.strMealThumb,
                             fit: BoxFit.fitWidth,
                             errorBuilder: (context, object, stackTrace) {
                               return const ImageNotFound();
