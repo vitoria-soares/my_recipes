@@ -7,12 +7,12 @@ class CookieCardRecipes extends StatelessWidget {
   final Widget? subtitle;
   final void Function()? onTap;
   const CookieCardRecipes({
-    Key? key,
+    super.key,
     this.leading,
     this.title,
     this.subtitle,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,8 @@ class CookieCardRecipes extends StatelessWidget {
                 flex: 30,
                 child: Visibility(
                   visible: leading != null,
-                  child: leading!,
                   replacement: const SizedBox.shrink(),
+                  child: leading ?? const SizedBox.shrink(),
                 ),
               ),
               Expanded(

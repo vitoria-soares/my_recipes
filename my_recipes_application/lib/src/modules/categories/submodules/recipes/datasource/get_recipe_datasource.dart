@@ -1,5 +1,4 @@
 import 'package:core_module/core_module.dart';
-import 'package:dartz/dartz.dart';
 
 import 'package:my_recipes_application/src/modules/categories/submodules/recipes/datasource/get_recipe_datasource_interface.dart';
 import 'package:my_recipes_application/src/modules/categories/submodules/recipes/domain/models/recipe_model.dart';

@@ -1,5 +1,5 @@
 import 'package:cookie_design_system/cookie_design_system.dart';
-import 'package:dependencies_module/dependencies_module.dart';
+import 'package:core_module/core_module.dart';
 import 'package:flutter/material.dart';
 
 import 'package:my_recipes_application/src/modules/categories/presenter/store/bloc/category_bloc.dart';
@@ -10,9 +10,9 @@ import '../../../categories/presenter/store/state/category_state.dart';
 class HomePage extends StatefulWidget {
   final CategoryBloc bloc;
   const HomePage({
-    Key? key,
+    super.key,
     required this.bloc,
-  }) : super(key: key);
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();

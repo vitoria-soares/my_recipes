@@ -1,22 +1,19 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "my_recipes_application"
-		},
-		{
-			"path": "dependencies_module"
-		},
-		{
-			"path": "core_module"
-		},
-		{
-			"path": "cookie_design_system"
-		}
-	],
-	"settings": {
-		"dart.flutterSdkPath": "/.fvm/flutter_sdk"
-	}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "my_recipes_application"
+    },
+    {
+      "path": "core_module"
+    },
+    {
+      "path": "cookie_design_system"
+    }
+  ],
+  "settings": {
+    "dart.flutterSdkPath": ".fvm/versions/3.41.9"
+  }
 }

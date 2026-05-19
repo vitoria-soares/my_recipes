@@ -1,5 +1,3 @@
-library cookie_design_system;
-
 export 'package:cookie_design_system/src/widgets/image_not_found.dart';
 export 'package:cookie_design_system/src/widgets/cookie_card_recipes.dart';
 export 'package:cookie_design_system/src/widgets/cookie_card.dart';

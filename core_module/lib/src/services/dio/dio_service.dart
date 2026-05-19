@@ -1,8 +1,8 @@
-import 'package:core_module/src/services/dio/service_information.dart';
-import 'package:core_module/src/services/errors/service_error.dart';
-import 'package:dependencies_module/dependencies_module.dart';
+import 'package:dio/dio.dart';
 
+import '../errors/service_error.dart';
 import 'dio_service_interface.dart';
+import 'service_information.dart';
 
 class DioService implements DioServiceInterface {
   final dio = Dio();
@@ -10,14 +10,14 @@ class DioService implements DioServiceInterface {
   @override
   Future<ServiceInformation> get(String url) async {
     try {
-      Response response = await dio.get(url);
+      final response = await dio.get<dynamic>(url);
       return ServiceInformation(
         data: response.data,
         statusCode: response.statusCode,
       );
-    } on DioError catch (error, stackTrace) {
+    } on DioException catch (error, stackTrace) {
       throw ServiceError(
-        message: error.message,
+        message: error.message ?? 'Unknown Dio error',
         stackTrace: stackTrace,
       );
     }

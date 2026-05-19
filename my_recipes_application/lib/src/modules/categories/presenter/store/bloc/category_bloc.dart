@@ -1,4 +1,4 @@
-import 'package:dependencies_module/dependencies_module.dart';
+import 'package:core_module/core_module.dart';
 
 import 'package:my_recipes_application/src/modules/categories/domain/usecases/get_category_usecase.dart';
 import 'package:my_recipes_application/src/modules/categories/presenter/store/event/category_event.dart';

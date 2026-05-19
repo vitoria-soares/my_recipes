@@ -1,4 +1,4 @@
-import 'package:dependencies_module/dependencies_module.dart';
+import 'package:core_module/core_module.dart';
 
 import '../../../domain/usecases/get_recipe_usecase.dart';
 import '../event/recipe_event.dart';

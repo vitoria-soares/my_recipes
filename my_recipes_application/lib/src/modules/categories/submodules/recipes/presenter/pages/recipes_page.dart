@@ -1,5 +1,5 @@
 import 'package:cookie_design_system/cookie_design_system.dart';
-import 'package:dependencies_module/dependencies_module.dart';
+import 'package:core_module/core_module.dart';
 import 'package:flutter/material.dart';
 
 import 'package:my_recipes_application/src/modules/categories/domain/models/category_model.dart';
@@ -12,10 +12,10 @@ class RecipesPage extends StatefulWidget {
   final CategoryModel categoryModel;
   final RecipeBloc bloc;
   const RecipesPage({
-    Key? key,
+    super.key,
     required this.categoryModel,
     required this.bloc,
-  }) : super(key: key);
+  });
 
   @override
   State<RecipesPage> createState() => _RecipesPageState();
@@ -82,12 +82,6 @@ class _RecipesPageState extends State<RecipesPage> {
                       itemBuilder: (context, index) {
                         final recipe = state.recipeList.elementAt(index);
                         return CookieCardRecipes(
-                          onTap: () {
-                            Modular.to.navigate(
-                              '/recipePage',
-                              arguments: widget.bloc,
-                            );
-                          },
                           title: Text(
                             recipe.strMeal,
                             style: Theme.of(context).textTheme.titleSmall,

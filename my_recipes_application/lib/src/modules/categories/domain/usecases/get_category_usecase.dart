@@ -1,5 +1,4 @@
 import 'package:core_module/core_module.dart';
-import 'package:dartz/dartz.dart';
 import 'package:my_recipes_application/src/modules/categories/domain/models/category_model.dart';
 import 'package:my_recipes_application/src/modules/categories/domain/usecases/get_category_usecase_interface.dart';
 
