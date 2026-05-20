@@ -3,33 +3,40 @@ import 'dart:convert';
 import 'package:core_module/core_module.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:my_recipes_application/src/modules/categories/external/datasource/get_category_datasource.dart';
-import 'package:my_recipes_application/src/modules/error/datasource_error.dart';
+import 'package:my_recipes_application/src/modules/categories/domain/entities/category_entity.dart';
+import 'package:my_recipes_application/src/modules/categories/external/datasource/get_category_datasource_impl.dart';
 
 import '../../../../../utils/category_json.dart';
 
-class DioServiceMock extends Mock implements DioServiceInterface {}
+class DioServiceMock extends Mock implements HttpServiceInterface {}
 
 void main() {
-  final dio = DioServiceMock();
-  final datasource = GetCategoryDatasource(dio: dio);
+  late HttpServiceInterface dio;
+  late GetCategoryDatasourceImpl datasource;
+
+  setUp(() {
+    dio = DioServiceMock();
+    datasource = GetCategoryDatasourceImpl(dio: dio);
+  });
 
   group(
     '[Datasource] - Success => ',
     () {
       test(
-        'Should return a list of CategoryModel',
+        'Should return a list of CategoryEntity',
         () async {
-          when(() => dio.get(any())).thenAnswer(
+          when(() => dio.request(any())).thenAnswer(
             (_) async => ServiceInformation(
               data: jsonDecode(categoryJsonMock),
               statusCode: 200,
             ),
           );
 
-          final result = await datasource();
+          final result = await datasource.list();
 
-          expect(result.isRight(), true);
+          expect(result, isA<List<CategoryEntity>>());
+          expect(result.isNotEmpty, true);
+          expect(result.first.idCategory, '1');
         },
       );
     },
@@ -39,18 +46,19 @@ void main() {
     '[Datasource] - Error => ',
     () {
       test(
-        'Should return Error 400',
+        'Should throw DatasourceError when request fails',
         () async {
-          when(() => dio.get(any())).thenAnswer(
-            (_) async => ServiceInformation(
-              data: jsonDecode(categoryJsonMock),
-              statusCode: 400,
+          when(() => dio.request(any())).thenThrow(
+            DatasourceError(
+              message: 'Request failed',
+              stackTrace: StackTrace.current,
             ),
           );
 
-          final result = datasource();
-
-          expect(result, throwsA(isA<DatasourceError>()));
+          expect(
+            () => datasource.list(),
+            throwsA(isA<DatasourceError>()),
+          );
         },
       );
     },

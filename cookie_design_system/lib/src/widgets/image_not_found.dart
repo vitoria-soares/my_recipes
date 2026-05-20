@@ -1,3 +1,5 @@
+import 'package:cookie_design_system/src/constants/images/cookie_images.dart';
+import 'package:core_module/core_module.dart';
 import 'package:flutter/material.dart';
 
 class ImageNotFound extends StatelessWidget {
@@ -5,8 +7,9 @@ class ImageNotFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      'https://www.food4fuel.com/wp-content/uploads/woocommerce-placeholder-600x600.png',
+    return SvgPicture.asset(
+      CookieImages.placeholder,
+      package: 'cookie_design_system',
       fit: BoxFit.cover,
     );
   }

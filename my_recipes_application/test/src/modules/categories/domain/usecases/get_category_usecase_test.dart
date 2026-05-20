@@ -1,41 +1,42 @@
 import 'package:core_module/core_module.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:my_recipes_application/src/modules/categories/domain/models/category_model.dart';
-import 'package:my_recipes_application/src/modules/categories/domain/usecases/get_category_usecase.dart';
+import 'package:my_recipes_application/src/modules/categories/domain/entities/category_entity.dart';
+import 'package:my_recipes_application/src/modules/categories/domain/infra_interfaces/categories_repository_interface.dart';
+import 'package:my_recipes_application/src/modules/categories/domain/usecases/get_category_usecase_impl.dart';
 import 'package:my_recipes_application/src/modules/categories/domain/usecases/get_category_usecase_interface.dart';
-import 'package:my_recipes_application/src/modules/categories/external/datasource/get_category_datasource_interface.dart';
 
-class DatasourceMock extends Mock implements GetCategoryDatasourceInterface {}
+class RepositoryMock extends Mock implements CategoriesRepositoryInterface {}
 
 void main() {
-  late GetCategoryDatasourceInterface datasource;
+  late CategoriesRepositoryInterface repository;
   late GetCategoryUsecaseInterface usecase;
-  final categoryMock = CategoryModel(
-    idCategory: '01',
-    strCategory: 'Seafood',
-    strCategoryThumb: 'strCategoryThumb',
-    strCategoryDescription: 'Description recipe...',
+
+  const categoryMock = CategoryEntity(
+    idCategory: '1',
+    strCategory: 'Beef',
+    strCategoryThumb: 'https://www.themealdb.com/images/category/beef.png',
+    strCategoryDescription: 'Description',
   );
 
-  setUpAll(() {
-    datasource = DatasourceMock();
-    usecase = GetCategoryUsecase(datasource);
+  setUp(() {
+    repository = RepositoryMock();
+    usecase = GetCategoryUsecaseImpl(repository);
   });
 
   group('[Usecase] - Success => ', () {
-    test('Should return a list of CategoryModel', () async {
-      when(() => datasource()).thenAnswer(
-        (_) async => Right(
-          <CategoryModel>[categoryMock],
-        ),
+    test('Should return a list of CategoryEntity', () async {
+      when(() => repository.list()).thenAnswer(
+        (_) async => const Right(<CategoryEntity>[
+          categoryMock
+        ]),
       );
 
-      final result = await usecase();
+      final result = await usecase.list();
 
       expect(
         result.fold((l) => l, (r) => r.first.idCategory),
-        '01',
+        '1',
       );
     });
   });
@@ -46,20 +47,20 @@ void main() {
       test(
         'Should return Error',
         () async {
-          when(() => datasource()).thenAnswer(
+          when(() => repository.list()).thenAnswer(
             (_) async => Left(
               ApplicationError(
-                message: 'Error causad by test Usecase',
+                message: 'Error caused by test Usecase',
                 stackTrace: StackTrace.current,
               ),
             ),
           );
 
-          final result = await usecase();
+          final result = await usecase.list();
 
           expect(
             result.fold((l) => l.message, (r) => r),
-            'Error causad by test Usecase',
+            'Error caused by test Usecase',
           );
         },
       );

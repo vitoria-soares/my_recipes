@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "dart.flutterSdkPath": ".fvm/versions/3.41.9",
+    "configurations": [
+        {
+            "name": "my_recipes_application",
+            "cwd": "my_recipes_application",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=BASE_URL=https://www.themealdb.com/api/json/v1/1"
+            ]
+        },
+        {
+            "name": "my_recipes_application (profile mode)",
+            "cwd": "my_recipes_application",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "my_recipes_application (release mode)",
+            "cwd": "my_recipes_application",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
