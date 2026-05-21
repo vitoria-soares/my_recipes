@@ -26,6 +26,7 @@ void main() {
       test(
         'Should return a list of RecipeEntity',
         () async {
+          // Arrange
           when(
             () => dio.request(
               any(),
@@ -37,9 +38,10 @@ void main() {
               statusCode: 200,
             ),
           );
-
+          // Act
           final result = await datasource.list(category);
 
+          // Assert/Expect
           expect(result, isA<List<RecipeEntity>>());
           expect(result.isNotEmpty, true);
           expect(result.first.idMeal, '52959');
@@ -54,6 +56,7 @@ void main() {
       test(
         'Should throw DatasourceError when request fails',
         () async {
+          //Arrange
           when(
             () => dio.request(
               any(),
@@ -66,8 +69,12 @@ void main() {
             ),
           );
 
+          //Act
+          final result = datasource.list(category);
+          //Assert/Expect
+
           expect(
-            () => datasource.list(category),
+            () => result,
             throwsA(isA<DatasourceError>()),
           );
         },

@@ -30,14 +30,17 @@ void main() {
       test(
         'Should return a list of RecipeEntity',
         () async {
+          //Arrange
           when(() => repository.list(category)).thenAnswer(
             (_) async => const Right(<RecipeEntity>[
               recipeMock
             ]),
           );
 
+          //Act
           final result = await usecase.list(category);
 
+          //Assert/Expect
           expect(
             result.fold((l) => l, (r) => r.first.idMeal),
             '52959',
@@ -53,6 +56,7 @@ void main() {
       test(
         'Should return ApplicationError',
         () async {
+          //Arrange
           when(() => repository.list(category)).thenAnswer(
             (_) async => Left(
               ApplicationError(
@@ -64,6 +68,7 @@ void main() {
 
           final result = await usecase.list(category);
 
+          //Assert/Expect
           expect(
             result.fold((l) => l.message, (r) => r),
             'Error caused by test Usecase',

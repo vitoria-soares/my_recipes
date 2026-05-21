@@ -26,14 +26,17 @@ void main() {
 
   group('[Usecase] - Success => ', () {
     test('Should return a list of CategoryEntity', () async {
+      //Arrange
       when(() => repository.list()).thenAnswer(
         (_) async => const Right(<CategoryEntity>[
           categoryMock
         ]),
       );
 
+      //Act
       final result = await usecase.list();
 
+      //Assert/Expect
       expect(
         result.fold((l) => l, (r) => r.first.idCategory),
         '1',
@@ -47,6 +50,7 @@ void main() {
       test(
         'Should return Error',
         () async {
+          //Arrange
           when(() => repository.list()).thenAnswer(
             (_) async => Left(
               ApplicationError(
@@ -56,8 +60,10 @@ void main() {
             ),
           );
 
+          //Act
           final result = await usecase.list();
 
+          //Assert/Expect
           expect(
             result.fold((l) => l.message, (r) => r),
             'Error caused by test Usecase',

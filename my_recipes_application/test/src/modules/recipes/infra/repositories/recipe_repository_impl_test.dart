@@ -30,14 +30,17 @@ void main() {
       test(
         'Should return Right with a list of RecipeEntity',
         () async {
+          //Arrange
           when(() => datasource.list(category)).thenAnswer(
             (_) async => const <RecipeEntity>[
               recipeMock
             ],
           );
 
+          //Act
           final result = await repository.list(category);
 
+          //Assert/Expect
           expect(result.isRight(), true);
           expect(
             result.fold((l) => l, (r) => r.first.idMeal),
@@ -54,6 +57,7 @@ void main() {
       test(
         'Should return Left with ApplicationError when datasource throws ApplicationError',
         () async {
+          // Arrange
           when(() => datasource.list(category)).thenThrow(
             ApplicationError(
               message: 'Datasource ApplicationError',
@@ -61,8 +65,10 @@ void main() {
             ),
           );
 
+          // Act
           final result = await repository.list(category);
 
+          // Assert/Expect
           expect(result.isLeft(), true);
           expect(
             result.fold((l) => l.message, (r) => r),
@@ -79,12 +85,15 @@ void main() {
       test(
         'Should return Left with ApplicationError when datasource throws a generic exception',
         () async {
+          // Arrange
           when(() => datasource.list(category)).thenThrow(
             Exception('Unexpected error'),
           );
 
+          // Act
           final result = await repository.list(category);
 
+          // Assert/Expect
           expect(result.isLeft(), true);
           expect(
             result.fold((l) => l.message, (r) => r),

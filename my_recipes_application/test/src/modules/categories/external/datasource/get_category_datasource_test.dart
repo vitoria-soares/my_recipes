@@ -25,15 +25,17 @@ void main() {
       test(
         'Should return a list of CategoryEntity',
         () async {
+          // Arrange
           when(() => dio.request(any())).thenAnswer(
             (_) async => ServiceInformation(
               data: jsonDecode(categoryJsonMock),
               statusCode: 200,
             ),
           );
-
+          // Act
           final result = await datasource.list();
 
+          // Assert/Expect
           expect(result, isA<List<CategoryEntity>>());
           expect(result.isNotEmpty, true);
           expect(result.first.idCategory, '1');
@@ -48,6 +50,7 @@ void main() {
       test(
         'Should throw DatasourceError when request fails',
         () async {
+          //Arrange
           when(() => dio.request(any())).thenThrow(
             DatasourceError(
               message: 'Request failed',
@@ -55,8 +58,12 @@ void main() {
             ),
           );
 
+          //Act
+          final result = datasource.list();
+
+          //Assert/Expect
           expect(
-            () => datasource.list(),
+            () => result,
             throwsA(isA<DatasourceError>()),
           );
         },
